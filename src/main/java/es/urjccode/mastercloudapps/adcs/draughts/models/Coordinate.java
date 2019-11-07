@@ -12,9 +12,12 @@ public class Coordinate {
         this.column = column;
     }
 
+    private boolean isInsideTheLimits(int position) {
+        return Coordinate.LOWER_LIMIT <= position && position <= Coordinate.UPPER_LIMIT;
+    }
+
     public boolean isValid() {
-        return Coordinate.LOWER_LIMIT <= row && row <= Coordinate.UPPER_LIMIT && Coordinate.LOWER_LIMIT <= column
-                && column <= Coordinate.UPPER_LIMIT;
+        return this.isInsideTheLimits(row) && this.isInsideTheLimits(column);
     }
 
     public boolean isDiagonal(Coordinate coordinate) {
