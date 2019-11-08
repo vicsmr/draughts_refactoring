@@ -9,7 +9,7 @@ public class State {
 	}
 
 	public void next() {
-        assert this.stateValue != StateValue.EXIT;
+        assert !StateValue.EXIT.equals(this.stateValue);
 		this.stateValue = StateValue.values()[this.stateValue.ordinal() + 1];
 	}
 
