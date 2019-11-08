@@ -9,10 +9,16 @@ import es.urjccode.mastercloudapps.adcs.draughts.models.StateValue;
 
 public class ResumeControllerTest {
 
+    Session session;
+    ResumeController resumeController;
+
+    public ResumeControllerTest() {
+        session = new Session();
+        resumeController = new ResumeController(session);
+    }
+
     @Test
     public void givenResumeControllerWhenResumeGameMoveToInitialStateRequiereCorrectThenNotError() {
-        Session session= new Session();
-        ResumeController resumeController = new ResumeController(session);
         assertEquals(StateValue.INITIAL, session.getValueState());
         resumeController.next();
         assertEquals(StateValue.IN_GAME, session.getValueState());
@@ -24,8 +30,6 @@ public class ResumeControllerTest {
 
     @Test(expected = AssertionError.class)
     public void givenResumeControllerWhenResumeGameMoveOutThenError() {
-        Session session= new Session();
-        ResumeController resumeController = new ResumeController(session);
         for (StateValue state : StateValue.values()) {
             assertEquals(state, session.getValueState());
             resumeController.next();
