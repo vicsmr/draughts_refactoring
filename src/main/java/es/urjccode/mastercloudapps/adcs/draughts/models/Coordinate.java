@@ -33,17 +33,15 @@ public class Coordinate {
         return Math.abs(this.row - coordinate.row);
     }
 
+    private int obtainShift(int givenPosition, int actualPosition) {
+        return givenPosition - actualPosition < 0 ? -1 : 1;
+    }
+
     public Coordinate betweenDiagonal(Coordinate coordinate) {
         assert coordinate != null && coordinate.isValid();
         assert this.isValid() && this.diagonalDistance(coordinate) == 2;
-        int rowShift = 1;
-        if (coordinate.row - this.row < 0) {
-            rowShift = -1;
-        }
-        int columnShift = 1;
-        if (coordinate.column - this.column < 0) {
-            columnShift = -1;
-        }
+        int rowShift = this.obtainShift(coordinate.row, this.row);
+        int columnShift = this.obtainShift(coordinate.column, this.column);
         return new Coordinate(this.row + rowShift, this.column + columnShift);
     }
 
