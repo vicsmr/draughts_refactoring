@@ -19,7 +19,7 @@ class Board {
     }
 
     private Square getSquare(Coordinate coordinate){
-        assert coordinate!=null && coordinate.isValid();
+        assert coordinate != null && coordinate.isValid();
         return this.squares[coordinate.getRow()][coordinate.getColumn()];
     }
 
@@ -76,7 +76,7 @@ class Board {
 
     private String toStringHorizontalNumbers(){
         String string = " ";
-        for (int j = 0; j < Board.DIMENSION; j++) {
+        for (int j = 0; j < this.getDimension(); j++) {
             string += j;
         }
         return string + "\n";
