@@ -8,8 +8,12 @@ class Turn {
         this.color = Color.WHITE;
     }
 
+    private int obtainOrdinalColorValue() {
+        return (this.color.ordinal()+1)%2;
+    }
+
     void change(){
-        this.color = Color.values()[(this.color.ordinal()+1)%2];
+        this.color = Color.values()[this.obtainOrdinalColorValue()];
     }
 
     public Color getColor() {
