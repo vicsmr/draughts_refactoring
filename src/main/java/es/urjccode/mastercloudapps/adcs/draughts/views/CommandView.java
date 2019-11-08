@@ -14,14 +14,18 @@ public class CommandView extends SubView {
         super();
     }
 
+    private int obtainCoordinateFromString(String command, int init, int end) {
+        return Integer.parseInt(command.substring(init, end));
+    }
+
     public void interact(PlayController playController) {
         String color = CommandView.COLORS[playController.getColor().ordinal()];
         Error error = null;
         GameView gameView = new GameView();
         do {
             String command = this.console.readString("Mueven las " + color + ": ");
-            int origin = Integer.parseInt(command.substring(0, 2));
-            int target = Integer.parseInt(command.substring(3, 5));
+            int origin = this.obtainCoordinateFromString(command, 0, 2);
+            int target = this.obtainCoordinateFromString(command, 3, 5);
             error = playController.move(new Coordinate(origin/10-1, origin%10-1), new Coordinate(target/10-1, target%10-1));
             if (error != null){
                 console.writeln("Error!!!" + error.name());
