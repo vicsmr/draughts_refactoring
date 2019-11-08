@@ -14,16 +14,20 @@ public class GameView extends SubView {
         for (int i = 0; i < DIMENSION; i++) {
             this.console.write((i + 1) + "");
             for (int j = 0; j < DIMENSION; j++) {
-                Color color = controller.getColor(new Coordinate(i, j));
-                if (color == null) {
-                    this.console.write(GameView.COLORS[2]);
-                } else {
-                    this.console.write(GameView.COLORS[color.ordinal()]);
-                }
+                writePieceColor(controller, i, j);
             }
             this.console.writeln((i + 1) + "");
         }
         this.writeNumbersLine(DIMENSION);
+    }
+
+    private void writePieceColor(Controller controller, int rowPosition, int columnPosition) {
+        Color color = controller.getColor(new Coordinate(rowPosition, columnPosition));
+        if (color == null) {
+            this.console.write(GameView.COLORS[2]);
+        } else {
+            this.console.write(GameView.COLORS[color.ordinal()]);
+        }
     }
 
     private void writeNumbersLine(final int DIMENSION) {
