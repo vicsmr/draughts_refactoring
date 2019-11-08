@@ -26,13 +26,9 @@ public class ResumeControllerTest {
     public void givenResumeControllerWhenResumeGameMoveOutThenError() {
         Session session= new Session();
         ResumeController resumeController = new ResumeController(session);
-        assertEquals(StateValue.INITIAL, session.getValueState());
-        resumeController.next();
-        assertEquals(StateValue.IN_GAME, session.getValueState());
-        resumeController.next();
-        assertEquals(StateValue.FINAL, session.getValueState());
-        resumeController.next();
-        assertEquals(StateValue.EXIT, session.getValueState());
-        resumeController.next();
+        for (StateValue state : StateValue.values()) {
+            assertEquals(state, session.getValueState());
+            resumeController.next();
+        }
     }
 }
