@@ -16,9 +16,9 @@ public class BoardTest {
     public void testGivenNewBoardThenGoodLocations() {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < this.board.getDimension(); j++) {
-                Coordinate coordinate = new Coordinate(i,j);
+                Coordinate coordinate = new Coordinate(i, j);
                 Color color = board.getColor(coordinate);
-                if (coordinate.isBlack()){
+                if (coordinate.isBlack()) {
                     assertEquals(Color.BLACK, color);
                 } else {
                     assertNull(color);
@@ -27,9 +27,9 @@ public class BoardTest {
         }
         for (int i = 5; i < this.board.getDimension(); i++) {
             for (int j = 0; j < this.board.getDimension(); j++) {
-                Coordinate coordinate = new Coordinate(i,j);
+                Coordinate coordinate = new Coordinate(i, j);
                 Color color = board.getColor(coordinate);
-                if (coordinate.isBlack()){
+                if (coordinate.isBlack()) {
                     assertEquals(Color.WHITE, color);
                 } else {
                     assertNull(color);

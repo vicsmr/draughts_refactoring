@@ -40,7 +40,7 @@ public class GameViewTest {
     ArgumentCaptor<String> argument;
     
     @Test
-    public void testInteract(){
+    public void testInteract() {
         StartController startController = new StartController(new Session());
         this.gameView.write(startController);
         verify(console, times(90)).write(argument.capture());
@@ -58,7 +58,7 @@ public class GameViewTest {
         assertEquals(marshall(rows), marshall(argument.getAllValues()));
     }
 
-    private static String marshall(List<String> strings){
+    private static String marshall(List<String> strings) {
         String string = "";
         Iterator<String> iterator = strings.iterator();
         while (iterator.hasNext()){
