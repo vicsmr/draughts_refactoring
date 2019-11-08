@@ -14,7 +14,7 @@ public class View implements ControllersVisitor {
 
     private ResumeView resumeView;
 
-    public View(){
+    public View() {
         this.startView = new StartView();
         this.commandView = new CommandView();
         this.resumeView = new ResumeView();

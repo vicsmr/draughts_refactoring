@@ -1,15 +1,15 @@
 package es.urjccode.mastercloudapps.adcs.draughts.utils;
 
-public class YesNoDialog  {
+public class YesNoDialog {
 
 	private static final char AFIRMATIVE = 'y';
 	private static final char NEGATIVE = 'n';
-	private static final String QUESTION = "? ("+YesNoDialog.AFIRMATIVE+"/"+YesNoDialog.NEGATIVE+"): ";
-	private static final String ERROR = "The value must be '" + YesNoDialog.AFIRMATIVE + "' or '"
-			+ YesNoDialog.NEGATIVE + "'";
-    private Console console;
+	private static final String QUESTION = "? (" + YesNoDialog.AFIRMATIVE + "/" + YesNoDialog.NEGATIVE + "): ";
+	private static final String ERROR = "The value must be '" + YesNoDialog.AFIRMATIVE + "' or '" + YesNoDialog.NEGATIVE
+			+ "'";
+	private Console console;
 
-    public YesNoDialog(){
+    public YesNoDialog() {
         this.console = new Console();
     }
     

@@ -18,12 +18,12 @@ class Board {
         }
     }
 
-    private Square getSquare(Coordinate coordinate){
+    private Square getSquare(Coordinate coordinate) {
         assert coordinate != null && coordinate.isValid();
         return this.squares[coordinate.getRow()][coordinate.getColumn()];
     }
 
-    void put(Coordinate coordinate, Piece piece){
+    void put(Coordinate coordinate, Piece piece) {
         assert piece != null;
         this.getSquare(coordinate).put(piece);
     }
@@ -44,7 +44,7 @@ class Board {
     boolean isEmpty(Coordinate coordinate) {
         return this.getSquare(coordinate).isEmpty();
     }
-    
+
     Color getColor(Coordinate coordinate) {
         return this.getSquare(coordinate).getColor();
     }
@@ -74,7 +74,7 @@ class Board {
         return string;
     }
 
-    private String toStringHorizontalNumbers(){
+    private String toStringHorizontalNumbers() {
         String string = " ";
         for (int j = 0; j < this.getDimension(); j++) {
             string += j;
@@ -82,14 +82,14 @@ class Board {
         return string + "\n";
     }
 
-    private String toStringHorizontalPiecesWithNumbers(int row){
+    private String toStringHorizontalPiecesWithNumbers(int row) {
         String string = "" + row;
         for (int j = 0; j < this.getDimension(); j++) {
             Piece piece = this.getPiece(new Coordinate(row, j));
             if (piece == null) {
                 string += " ";
             } else {
-                final String[] letters = {"b","n"};
+                final String[] letters = { "b", "n" };
                 string += letters[piece.getColor().ordinal()];
             }
         }

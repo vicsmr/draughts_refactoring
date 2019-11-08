@@ -10,7 +10,7 @@ class Draughts {
 
     private Logic logic;
 
-    private Draughts(){
+    private Draughts() {
         this.view = new View();
         this.logic = new Logic();
     }
@@ -19,13 +19,13 @@ class Draughts {
         Controller controller;
 		do {
 			controller = this.logic.getController();
-			if (controller != null){
+			if (controller != null) {
 				this.view.interact(controller);
 			}
 		} while (controller != null); 
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         new Draughts().play();
     }
     

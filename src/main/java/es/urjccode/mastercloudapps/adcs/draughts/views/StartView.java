@@ -6,7 +6,7 @@ public class StartView extends SubView {
 
     private static final String TITTLE = "Draughts";
 
-    public StartView(){
+    public StartView() {
         super();
     }
 
