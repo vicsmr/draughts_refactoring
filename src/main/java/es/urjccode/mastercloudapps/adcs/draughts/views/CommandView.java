@@ -2,13 +2,12 @@ package es.urjccode.mastercloudapps.adcs.draughts.views;
 
 import es.urjccode.mastercloudapps.adcs.draughts.controllers.PlayController;
 import es.urjccode.mastercloudapps.adcs.draughts.models.Error;
+import es.urjccode.mastercloudapps.adcs.draughts.utils.Message;
 import es.urjccode.mastercloudapps.adcs.draughts.models.Coordinate;
 
 public class CommandView extends SubView {
 
-    private static final String[] COLORS = { "blancas", "negras" };
-
-    private static final String MESSAGE = "Derrota!!! No puedes mover tus fichas!!!";
+    private static final String[] COLORS = { Message.WHITES, Message.BLACKS };
 
     public CommandView() {
         super();
@@ -23,18 +22,18 @@ public class CommandView extends SubView {
         Error error = null;
         GameView gameView = new GameView();
         do {
-            String command = this.console.readString("Mueven las " + color + ": ");
+            String command = this.console.readString(Message.MOVE + color + Message.TWO_DOTS);
             int origin = this.obtainCoordinateFromString(command, 0, 2);
             int target = this.obtainCoordinateFromString(command, 3, 5);
             error = playController.move(new Coordinate(origin / 10 - 1, origin % 10 - 1),
                     new Coordinate(target / 10 - 1, target % 10 - 1));
             if (error != null) {
-                console.writeln("Error!!!" + error.name());
+                console.writeln(Message.ERROR + error.name());
                 gameView.write(playController);
             }
         } while (error != null);
         if (playController.isBlocked())
-            this.console.write(CommandView.MESSAGE);
+            this.console.write(Message.LOSE_GAME);
     }
 
 }

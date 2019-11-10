@@ -1,5 +1,7 @@
 package es.urjccode.mastercloudapps.adcs.draughts.models;
 
+import es.urjccode.mastercloudapps.adcs.draughts.utils.Message;
+
 public class Game {
 
 	private Board board;
@@ -66,7 +68,7 @@ public class Game {
 
 	@Override
 	public String toString() {
-		return this.board + "\n" + this.turn;
+		return this.board + Message.LINE_BREAK + this.turn;
 	}
 
 	public Color getColor() {

@@ -1,5 +1,7 @@
 package es.urjccode.mastercloudapps.adcs.draughts.models;
 
+import es.urjccode.mastercloudapps.adcs.draughts.utils.Message;
+
 public class Coordinate {
 
     private int row;
@@ -60,7 +62,7 @@ public class Coordinate {
 
     @Override
     public String toString() {
-        return "(" + row + ", " + column + ")";
+        return Message.OPEN_PARENTHESIS + row + Message.COMMA + column + Message.CLOSE_PARENTHESIS;
     }
 
     @Override

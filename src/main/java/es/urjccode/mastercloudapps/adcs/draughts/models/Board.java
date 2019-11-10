@@ -3,6 +3,8 @@ package es.urjccode.mastercloudapps.adcs.draughts.models;
 import java.util.ArrayList;
 import java.util.List;
 
+import es.urjccode.mastercloudapps.adcs.draughts.utils.Message;
+
 class Board {
 
     private static final int DIMENSION = 8;
@@ -75,11 +77,11 @@ class Board {
     }
 
     private String toStringHorizontalNumbers() {
-        String string = " ";
+        String string = Message.SPACE;
         for (int j = 0; j < this.getDimension(); j++) {
             string += j;
         }
-        return string + "\n";
+        return string + Message.LINE_BREAK;
     }
 
     private String toStringHorizontalPiecesWithNumbers(int row) {
@@ -87,13 +89,13 @@ class Board {
         for (int j = 0; j < this.getDimension(); j++) {
             Piece piece = this.getPiece(new Coordinate(row, j));
             if (piece == null) {
-                string += " ";
+                string += Message.SPACE;
             } else {
-                final String[] letters = { "b", "n" };
+                final String[] letters = { Message.WHITE_PIECE, Message.BLACK_PIECE };
                 string += letters[piece.getColor().ordinal()];
             }
         }
-        return string + row + "\n";
+        return string + row + Message.LINE_BREAK;
     }
 
 }
