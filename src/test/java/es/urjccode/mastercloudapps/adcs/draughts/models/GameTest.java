@@ -16,25 +16,23 @@ public class GameTest {
     public void testGivenNewBoardThenGoodLocations() {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < game.getDimension(); j++) {
-                Coordinate coordinate = new Coordinate(i,j);
-                Color color = game.getColor(coordinate);
-                if (coordinate.isBlack()){
-                    assertEquals(Color.BLACK, color);
-                } else {
-                    assertNull(color);
-                }
+                this.checkPieceLocation(Color.BLACK, i, j);
             }
         }
         for (int i = 5; i < game.getDimension(); i++) {
             for (int j = 0; j < game.getDimension(); j++) {
-                Coordinate coordinate = new Coordinate(i,j);
-                Color color = game.getColor(coordinate);
-                if (coordinate.isBlack()){
-                    assertEquals(Color.WHITE, color);
-                } else {
-                    assertNull(color);
-                }
+                this.checkPieceLocation(Color.WHITE, i, j);
             }
+        }
+    }
+
+    private void checkPieceLocation(Color colorToCheck, int row, int column) {
+        Coordinate coordinate = new Coordinate(row,column);
+        Color color = game.getColor(coordinate);
+        if (coordinate.isBlack()){
+            assertEquals(colorToCheck, color);
+        } else {
+            assertNull(color);
         }
     }
 
