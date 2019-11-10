@@ -1,6 +1,7 @@
 package es.urjccode.mastercloudapps.adcs.draughts.models;
 
 import static org.junit.Assert.assertNull;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import org.junit.Before;
@@ -14,7 +15,7 @@ import org.mockito.Spy;
 public class GameTest {
 
     @Spy
-    private Board board;
+    private BoardWithPieces board;
 
     @Spy
     private Turn turn;
@@ -137,15 +138,15 @@ public class GameTest {
 
     @Test
     public void testGivenGameWhenMovementThenEatPiece() {
-        assertNull(this.advance(new Coordinate[][] { 
-            { new Coordinate(5, 0), new Coordinate(4, 1) },
-            { new Coordinate(2, 1), new Coordinate(3, 0) }, 
-            { new Coordinate(5, 2), new Coordinate(4, 3) },
-            { new Coordinate(3, 0), new Coordinate(5, 2) }, 
-        }));
-        assertNull(game.getColor(new Coordinate(3, 0)));
-        assertNull(game.getColor(new Coordinate(4, 1)));
-        assertEquals(Color.BLACK, game.getColor(new Coordinate(5, 2)));
+        Coordinate origin = new Coordinate(5, 0);
+        Coordinate target = new Coordinate(3, 2);
+        Coordinate originEatPiece = new Coordinate(4, 1);
+        when(board.getPiece(originEatPiece)).thenReturn(new Piece(Color.BLACK));
+        Error error = gameMock.move(origin, target);
+        assertNull(error);
+        assertNull(gameMock.getColor(origin));
+        verify(board).remove(originEatPiece);
+        assertEquals(Color.WHITE, gameMock.getColor(target));
     }
 
     @Test
