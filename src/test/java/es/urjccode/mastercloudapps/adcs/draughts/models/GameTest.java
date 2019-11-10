@@ -115,11 +115,10 @@ public class GameTest {
 
     @Test
     public void testGivenGameWhenNotEmptyTargeThenError() {
-        assertEquals(Error.NOT_EMPTY_TARGET, this.advance(new Coordinate[][] { 
-            { new Coordinate(5, 6), new Coordinate(4, 7) },
-            { new Coordinate(2, 7), new Coordinate(3, 6) }, 
-            { new Coordinate(4, 7), new Coordinate(3, 6) }, 
-        })); 
+        Coordinate target = new Coordinate(4, 5);
+        when(board.getPiece(target)).thenReturn(new Piece(Color.BLACK));
+        when(board.isEmpty(target)).thenReturn(false);
+        assertEquals(Error.NOT_EMPTY_TARGET, gameMock.move(new Coordinate(5, 4), target));
     }
 
     @Test
