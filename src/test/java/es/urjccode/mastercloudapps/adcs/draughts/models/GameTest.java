@@ -27,9 +27,9 @@ public class GameTest {
     }
 
     private void checkPieceLocation(Color colorToCheck, int row, int column) {
-        Coordinate coordinate = new Coordinate(row,column);
+        Coordinate coordinate = new Coordinate(row, column);
         Color color = game.getColor(coordinate);
-        if (coordinate.isBlack()){
+        if (coordinate.isBlack()) {
             assertEquals(colorToCheck, color);
         } else {
             assertNull(color);
