@@ -76,12 +76,20 @@ public class Coordinate {
 
     @Override
     public boolean equals(Object obj) {
+        return checkObject(obj);
+    }
+
+    private boolean checkObject(Object obj) {
         if (this == obj)
             return true;
         if (obj == null)
             return false;
         if (getClass() != obj.getClass())
             return false;
+        return checkColumnAndRow(obj);
+    }
+
+    private boolean checkColumnAndRow(Object obj) {
         Coordinate other = (Coordinate) obj;
         if (column != other.column)
             return false;
