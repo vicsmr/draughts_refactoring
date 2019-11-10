@@ -38,38 +38,25 @@ public class Game {
 
 	public Error move(Coordinate origin, Coordinate target) {
 		assert origin != null && target != null;
-		if (!origin.isValid() || !target.isValid()) {
-			return Error.OUT_COORDINATE;
-		}
-		if (board.isEmpty(origin)) {
-			return Error.EMPTY_ORIGIN;
-		}
-		Color color = this.board.getColor(origin);
-		if (this.turn.getColor() != color) {
-			return Error.OPPOSITE_PIECE;
-		}
-		if (!origin.isDiagonal(target)) {
-			return Error.NOT_DIAGONAL;
-		}
-		Piece piece = this.board.getPiece(origin);
-		if (!piece.isAdvanced(origin, target)) {
-			return Error.NOT_ADVANCED;
-		}
-		if (origin.diagonalDistance(target) >= 3) {
-			return Error.BAD_DISTANCE;
-		}
-		if (!this.board.isEmpty(target)) {
-			return Error.NOT_EMPTY_TARGET;
-		}
-		if (origin.diagonalDistance(target) == 2) {
-			Coordinate between = origin.betweenDiagonal(target);
-			if (this.board.getPiece(between) == null) {
-				return Error.EATING_EMPTY;
-			}
-			this.board.remove(between);
+		ValidatorErrorMove validatorErrorMove = new ValidatorErrorMove(this.board, this.turn, origin, target);
+		Error error = validatorErrorMove.checkError();
+		error = error == null ? checkDiagonalError(origin, target) : error;
+		if (error != null) {
+			return error;
 		}
 		this.board.move(origin, target);
 		this.turn.change();
+		return null;
+	}
+
+	private Error checkDiagonalError(Coordinate origin, Coordinate target) {
+		if (origin.diagonalDistance(target) == 2) {
+			Coordinate between = origin.betweenDiagonal(target);
+			if (board.getPiece(between) == null) {
+				return Error.EATING_EMPTY;
+			}
+			board.remove(between);
+		}
 		return null;
 	}
 
