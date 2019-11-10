@@ -87,15 +87,19 @@ class Board {
     private String toStringHorizontalPiecesWithNumbers(int row) {
         String string = "" + row;
         for (int j = 0; j < this.getDimension(); j++) {
-            Piece piece = this.getPiece(new Coordinate(row, j));
-            if (piece == null) {
-                string += Message.SPACE;
-            } else {
-                final String[] letters = { Message.WHITE_PIECE, Message.BLACK_PIECE };
-                string += letters[piece.getColor().ordinal()];
-            }
+            string += this.obtainPiecesLettersFrom(row, j);
         }
         return string + row + Message.LINE_BREAK;
+    }
+
+    private String obtainPiecesLettersFrom(int row, int column) {
+        Piece piece = this.getPiece(new Coordinate(row, column));
+        if (piece == null) {
+            return Message.SPACE;
+        } else {
+            final String[] letters = { Message.WHITE_PIECE, Message.BLACK_PIECE };
+            return letters[piece.getColor().ordinal()];
+        }
     }
 
 }
