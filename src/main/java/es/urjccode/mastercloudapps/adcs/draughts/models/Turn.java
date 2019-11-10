@@ -25,8 +25,4 @@ class Turn {
         return this.color.name();
     }
 
-    public boolean isColor(Color color2) {
-		return false;
-	}
-
 }
