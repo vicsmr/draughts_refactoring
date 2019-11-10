@@ -21,6 +21,7 @@ public class CommandView extends SubView {
         String color = CommandView.COLORS[playController.getColor().ordinal()];
         Error error = null;
         GameView gameView = new GameView();
+        gameView.write(playController);
         do {
             error = commandMove(playController, color, gameView);
         } while (error != null);
